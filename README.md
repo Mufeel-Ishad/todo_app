@@ -71,7 +71,14 @@ lib/
 
 ## Screenshots
 
-(You can add some screenshots of the app here!)
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/42efaa7e-193c-48c4-8fac-953e466a0c95" />
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/39d5542e-da3f-4af1-97ae-54a8897f32bf" />
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/46269c5b-5c67-4d58-bce2-59b15c2105b6" />
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/d9c9660e-e1d5-4ba5-a4e2-dde99ef6cc3f" />
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/098a364d-b94a-4856-961f-69636f6f1299" />
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/36317643-b776-485a-aa99-65d3a929d15e" />
+<img width="461" height="1008" alt="image" src="https://github.com/user-attachments/assets/d9438303-1d2e-4c70-bc54-e7acd65247bc" />
+
 
 ---
 
