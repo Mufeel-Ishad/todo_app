@@ -10,34 +10,75 @@ class TaskProvider with ChangeNotifier {
 
   List<Task> get tasks => _tasks;
 
+  // Future<void> loadTasks() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final taskData = prefs.getString('tasks');
+  //   final idData = prefs.getInt('taskId') ?? 201;
+
+  //   _taskId = idData;
+
+  //   if (taskData != null) {
+  //     final List<dynamic> decoded = jsonDecode(taskData);
+  //     _tasks = decoded.map((json) => Task.fromJson(json)).toList();
+  //   } else {
+  //     final response = await http.get(
+  //       Uri.parse('https://jsonplaceholder.typicode.com/todos'),
+  //     );
+  //     if (response.statusCode == 200) {
+  //       final List<dynamic> apiTasks = jsonDecode(response.body);
+  //       _tasks = apiTasks
+  //           .take(10)
+  //           .map(
+  //             (json) => Task(
+  //               id: json['id'],
+  //               title: json['title'],
+  //               description: json['title'],
+  //               completed: json['completed'],
+  //             ),
+  //           )
+  //           .toList();
+  //       _saveToPrefs();
+  //     }
+  //   }
+
+  //   notifyListeners();
+  // }
   Future<void> loadTasks() async {
     final prefs = await SharedPreferences.getInstance();
     final taskData = prefs.getString('tasks');
     final idData = prefs.getInt('taskId') ?? 201;
-
     _taskId = idData;
 
     if (taskData != null) {
       final List<dynamic> decoded = jsonDecode(taskData);
       _tasks = decoded.map((json) => Task.fromJson(json)).toList();
     } else {
-      final response = await http.get(
-        Uri.parse('https://jsonplaceholder.typicode.com/todos'),
-      );
-      if (response.statusCode == 200) {
-        final List<dynamic> apiTasks = jsonDecode(response.body);
-        _tasks = apiTasks
-            .take(10)
-            .map(
-              (json) => Task(
-                id: json['id'],
-                title: json['title'],
-                description: json['title'],
-                completed: json['completed'],
-              ),
-            )
-            .toList();
-        _saveToPrefs();
+      try {
+        final response = await http.get(
+          Uri.parse('https://jsonplaceholder.typicode.com/todos'),
+        );
+
+        if (response.statusCode == 200) {
+          final List<dynamic> apiTasks = jsonDecode(response.body);
+          _tasks = apiTasks
+              .take(10)
+              .map(
+                (json) => Task(
+                  id: json['id'],
+                  title: json['title'],
+                  description: json['title'], // Using title as description
+                  completed: json['completed'],
+                ),
+              )
+              .toList();
+          _saveToPrefs();
+        } else {
+          throw Exception('Failed to load tasks from the API');
+        }
+      } catch (e) {
+        // Show a Snackbar or an alert dialog
+        print('Error loading tasks: $e');
+        // Optionally, show a user-friendly error message using a Snackbar
       }
     }
 
