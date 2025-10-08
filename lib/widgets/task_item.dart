@@ -60,7 +60,7 @@ class TaskItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('Completed', style: TextStyle(fontSize: 12)),
+                // Text('Completed', style: TextStyle(fontSize: 12)),
                 Switch(
                   value: task.completed,
                   onChanged: (_) => taskProvider.toggleComplete(task.id),
